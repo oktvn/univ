@@ -1,0 +1,4 @@
+Homework No.1:
+
+Write a function that computes the sum: 1 * 1 + 2 * 2 + 3 * 3 + ... + n * n
+

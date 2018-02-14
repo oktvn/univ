@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Title</title>
+    <meta name="description" content="Page">
+    <meta name="author" content="Author">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        name = "Oktvn";
+        console.log("Welcome! " + name);
+
+        function shout(text) {
+            var heading = document.createElement("h1");
+            var text = document.createTextNode(text);
+            heading.appendChild(text);
+            document.body.appendChild(heading);
+        }
+
+        shout("Hello oktvn");
+
+
+        // conditionals 
+
+        loggedIn = true;
+
+        if (loggedIn) {
+            shout("user is logged in");
+        } else {
+            shout("user is logged out");
+        }
+
+        // array to ul
+
+        var names = ["One", "Two", "Three"];
+
+        function makeUl(array) {
+            var list = document.createElement("ul");
+
+            for (var i = 0; i < array.length; i++) {
+                var item = document.createElement("li");
+                item.appendChild(document.createTextNode(array[i]));
+                list.appendChild(item);
+            }
+
+            return list;
+        }
+
+        document.body.appendChild(makeUl(names));
+
+        // array of arrays to a table
+
+        var students = [
+            ["AFXW95", "First", "Last", "1/1/1970"],
+            ["AMRL0K", "First2", "Last", "1/1/1970"],
+            ["AUZ0H0", "First3", "Last", "1/1/1970"],
+            ["BHL0DL", "First4", "Last", "1/1/1970"],
+            ["BL2HRQ", "First5", "Last", "1/1/1970"],
+            ["BYNLD0", "First6", "Last", "1/1/1970"],
+            ["C1OK4Z", "First7", "Last", "1/1/1970"],
+            ["C5ERHJ", "First8", "Last", "1/1/1970"],
+            ["C8XQKE", "First9", "Last", "1/1/1970"],
+            ["CB76S8", "First10", "Last", "1/1/1970"],
+            ["CFXYYH", "First11", "Last", "1/1/1970"]
+        ];
+
+        function makeTable(array) {
+            var table = document.createElement("table");
+            table.setAttribute("border", "2");
+            for(var i=0; i < array.length; i++) {
+                var trow = document.createElement("tr");
+                for (var j = 0; j < 5; j++) {
+                        var td = document.createElement('td');
+                        td.appendChild(document.createTextNode(array[i][j]));
+                        trow.appendChild(td);
+                }
+                table.appendChild(trow);
+            }
+
+            return table;
+        }
+
+        document.body.appendChild(makeTable(students));
+
+        // Factorial
+
+        function factorial(n) {
+            if ( n === 0 ) {
+                return 1;
+            }
+
+            return n * factorial(n-1);
+        }
+
+        console.log(factorial(5));
+
+        // Find the negative
+
+        numbers = [1, 2, 3, 4, -5, -6];
+
+        function findNegative(array) {
+
+            var numbers = document.createElement("span");
+            numbers.appendChild(document.createTextNode("The negative numbers are: "));
+
+            for (var i = 0; i < array.length; i++) {
+                var item = document.createElement("span");
+                if(array[i] < 0) {
+                item.appendChild(document.createTextNode(array[i] + ", "));
+                numbers.appendChild(item);
+                }
+            }
+            return numbers;
+        }
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(findNegative(numbers));
+
+
+        function countPositive(array) {
+
+            var numbers = document.createElement("span");
+            numbers.appendChild(document.createTextNode("This many positives: "));
+
+            for (var i = 0, j = 0; i < array.length; i++) {
+                if(array[i] > 0) {
+                j++;
+                }
+            }
+            numbers.appendChild(document.createTextNode(j));
+            return numbers;
+        }
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(countPositive(numbers));
+        
+    </script>
+</body>
+
+</html>
