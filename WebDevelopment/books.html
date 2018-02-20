@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Year = <input type="text" name="" id="year">
+    <button id="btn">Show Books</button>
+    
+    <ul id="outList">
+        <li>B1</li>
+        <li>B2</li>
+        <li>B3</li>
+    </ul>     
+</body>
+    <script type="text/javascript">
+        function $(sel) {
+            return document.querySelector(sel);
+        }
+        const books1 =
+            [
+                {author:"J.K. Rowling", title: "Harry Potter 1", year: "1997", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 2", year: "1998", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 3", year: "1997", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 4", year: "1995", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 5", year: "1994", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 6", year: "1993", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 7", year: "1992", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 8", year: "1991", publisher: 'P2'}, 
+                {author:"J.K. Rowling", title: "Harry Potter 9", year: "1990", publisher: 'P2'}, 
+
+            ];
+
+        // THIS IS FILTERING 
+
+        function booksFromYear(catalogue, year) {
+            const out = [];
+            for(var i = 0; i < catalogue.length; i++) {
+                if(parseInt(catalogue[i].year) === year) {
+                    out.push(catalogue[i]);
+                }
+            }
+            return out;
+        }
+
+        // 
+
+        $('#btn').addEventListener('click', onClick);
+
+        function onClick() {
+            const year = parseInt($('#year').value);
+
+            const books = booksFromYear(books1, year);
+
+            $('#outList').innerHTML = genList(books);
+        }
+
+        function genList(books) {
+            var s = '';
+            for (var i = 0; i < books.length; i++) {
+                s += `<li>${books[i].title}</li>`;
+            }
+            return s;
+        }
+    </script>
+</html>
