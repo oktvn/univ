@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" name="number" id="number">
+
+
+    <script>
+        function $(sel) {
+            return document.querySelector(sel);
+        }
+        // 
+        // we need to prevent defaultEvent
+        $('#number').addEventListener('keypress', onkeypress);
+        // function onkeypress(e) {
+        //     console.log(e.key);
+        //     const key = parseInt(e.key);
+        //     if (isNaN(key)) {
+        //         e.preventDefault();
+        //     }
+            
+        // }
+        function onkeypress(e) {
+            console.log(e.key);
+        const allowedKeys = [
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 
+            'Backspace', 'F5', 'Tab', 'ArrowLeft'
+        ]
+        const key = e.key;
+        if (!allowedKeys.includes(key)) {
+            e.preventDefault();
+        }
+        }
+    </script>
+    
+</body>
+</html>

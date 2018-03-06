@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #1967b1;
+            font-family: sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        
+    </div>
+
+    <script>
+        function $(sel) {
+            return document.querySelector(sel);
+        }
+        
+        const cardNumbers = [
+            [1, 5, 3],
+            [5, 3, 1]
+        ];
+        const cards = makeCards(cardNumbers);
+
+        function makeCards(array) {
+            return cardNumbers.map(row => row.map(n => ({
+                value: n,
+                selected: false,
+                solved: false
+            })));
+        }
+
+        function drawField() {
+            $("#container").innerHTML = genTable(cards);
+        }
+
+        drawField();
+
+        function genTable(cards) {
+            return `
+            <table>
+                ${cards.map(row => `
+                    <tr>
+                        ${row.map(card => `
+                            <td>${card.selected ? card.value : '?'}</td>
+                        `).join('')}
+                    </tr>
+                `).join('')}
+            </table>
+            `;
+        }
+        // http://webprogramozas.inf.elte.hu/webdev2/lectures/04/#/41
+        function xyCoord(td) {
+            const x =  td.cellIndex;
+            const tr = td.parentNode;
+            const y =  tr.sectionRowIndex;
+            return {
+                x: x,
+                y: y
+            };
+        }
+
+
+
+        // Event handlers
+
+        $('#container').addEventListener('click', onClick);
+        function onClick(e) {
+            // console.log(e.target);
+            if (e.target.matches('td')) {
+                const td = e.target;
+                //const coords = xyCoord(td);
+                // const y = coords.y;
+                // const x = coords.x;
+
+                const {x, y} = xyCoord(td);
+
+                cards[y][x].selected = !cards[y][x].selected;
+
+                drawField();
+            }
+        }
+    </script>
+    
+</body>
+</html>
